@@ -1,18 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Aug 30 18:35:08 2020
 
-@author: guillermo
-
-Para extraer lugares geográficos específicos de la api de twitter se recomienda hacer tweepi.api.geo_search(query="Uruguay",granularity="country"), cambiando Uruguay por el país que sea.
-"""
 
 version="0.0.1.0"
 
 import tweepy as tw
 import os
-os.chdir("/home/guillermo/Documentos/Programación/Twitter/")
+os.chdir("WORKING DIRECTORY PATH") #Change by the path of key file and where the database will be saved
 
 from lib.TwitterDB import TwitterDataBase
 from lib.Listener import StListener
@@ -48,51 +42,40 @@ DB=TwitterDataBase(version,date.today().strftime("_%d_%m_%Y"))
 DB.baseCreator("usuario,texto,tiempo,responde_a,hashtags,menciona_a,nombre_lugar,json")
 c=DB.getCursor()
 conn=DB.getConector()
-ruta="./auth.key"
+path="./auth.key"
 
-auth=tw.OAuthHandler(keyScanner(ruta)[0],
-                     keyScanner(ruta)[1])
+auth=tw.OAuthHandler(keyScanner(path)[0],
+                     keyScanner(path)[1])
 
-auth.set_access_token(keyScanner(ruta)[2],
-                      keyScanner(ruta)[3])
+auth.set_access_token(keyScanner(path)[2],
+                      keyScanner(path)[3])
 api=tw.API(auth,wait_on_rate_limit=True)
 
 listener=StListener(DB)
 stream=tw.Stream(auth=api.auth,listener=listener)
 
 
-def busquedaPorFiltro(filtro):
-    stream.filter(track=filtro)
-def busquedaPorLocation(loc):
+def searchByLocation(loc):
     stream.filter(locations=loc)
-    
-#filtro=['Lacalle Pou',"lacalle pou","Lacalle pou","Montevideo","damiani","Damiani","peñarol","Peñarol"]
-#filtro=['Trump',"trump"]
-loc_mvd=[-56.432647705078125,-34.9484279063708,-56.02134704589844,-34.696461172723474]
-loc_uy=[-58.491052, -34.9801634, -53.071505, -30.0856928]
+
+
+country_location=[-58.491052, -34.9801634, -53.071505, -30.0856928] #READ BELOW
+#This is the Uruguay location. You can change this selecting two coordinates in a polygon done with https://geojson.io/.
+#ALWAYS REMEBER: the geo polygon can include some neighboring areas. To filter that areas, you need to modify the "country_code" line of lib/Listener.py.
 while True:
     try:
-        busquedaPorLocation(loc_uy)
-        #busquedaPorFiltro(filtro)
+        searchByLocation(country_location)
 
     except KeyboardInterrupt:
-        print("SE INTERRUMPE LA EJECUCIÓN")
+        print("Keyboard Interrupt")
     
     except ReadTimeoutError:
-        print("SE CORTÓ LA CONEXIÓN, REINTENTANDO")
+        print("Timeout Error. Retrying conection...")
         continue
     except requests.ConnectionError:
-        print("Imposible establecer conexión. Reintentando en 5 segundos")
+        print("Can't establish connection. Retrying in 5 seconds")
         time.sleep(5)
         continue
-    except:
+    except: #In next version this should print the unknown exception in a log file.
         continue
 conn.close()
-
-#Hay que ver cómo maneja la excepción ReadTimeoutError
-    
-
-#conn=sqlite3.connect("Base_twitter.db")
-#df=pd.read_sql_query("SELECT * FROM twitter",conn)
-
-
