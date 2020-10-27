@@ -47,13 +47,13 @@ class StListener(tw.StreamListener):
             if self.debug: print("@"+status.user.screen_name+": "+tweet_text)
 
     def on_error(self,status_code):
-        print("Error: "+status_code)
+        print("Error: "+str(status_code))
 
     def on_warning(self,notice):
-        print("on_warning: "+notice)
+        print("on_warning: "+str(notice))
 
     def on_disconnect(self, notice):
-        print("on_disconnect: "+notice)
+        print("on_disconnect: "+str(notice))
 
     def on_timeout(self):
         print("on_timeout")
