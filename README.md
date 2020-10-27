@@ -1,11 +1,11 @@
 # twitter-sniffer
-This little app gets tweets in real time from a specific geographical location and saves them in a SQLite database.
+This little app gets tweets in real time from a specific country and saves them in a SQLite database.
 
 The SQLite database created saves one file by day, detailing the username, the text of the tweet, who is answering, and a lot of other things you can check if you run it.
 
-But before you can try this, you need to get a twitter developer account and credentials. See above for more information about this. 
+But before you can try this, you need to get a twitter developer account and credentials. See the next section for more information about this. 
 
-The default location of the tweets is the country Uruguay. To get tweets from another location, you need to change one parameter in the main file. More information above, too.
+The default country of the tweets is Uruguay. To get tweets from another country, you need to change one parameter in the main file. More information in the bottom of this file.
 
 
 Creating Twitter Credentials
@@ -24,7 +24,7 @@ To get a Twitter Developer account you need to keep the following steps:
 	2. In the Authentication Tokens section, generate the Access Token and Access Token Secret. Save them in the same file separed in lines.
 	3. The final result must be a auth.key file in the working directory (the one from which main.py is being executed) with 4 lines: in the first one is the API Key, the second has the API Key Secret, the third has the Access Token and the last one has the Access Token Secret.
 
-5-If the execution prints an 401 error, the auth.key file has some errors. Check if the copied keys are right and check there is not spaces or line break in the file (all that things will be detected and can be the root of the error).
+5. If the execution prints an 401 error, the auth.key file has some errors. Check if the copied keys are right and check there is not spaces or line break in the file (all that things will be detected and can be the root of the error).
 
 This section was created with information from the [Twitter Documentacion](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/quick-start).
 
