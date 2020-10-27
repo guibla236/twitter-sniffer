@@ -13,16 +13,16 @@ Creating Twitter Credentials
 
 To get a Twitter Developer account you need to keep the following steps:
 
-1-[Apply for a developer account](https://developer.twitter.com/en/apply-for-access)
+1. [Apply for a developer account](https://developer.twitter.com/en/apply-for-access)
 
-2-Create a Project and a developer App in the [developer portal](https://developer.twitter.com/en/portal/dashboard).
+2. Create a Project and a developer App in the [developer portal](https://developer.twitter.com/en/portal/dashboard).
 
-3-After create, you can check your credentials at the section "Keys and Tokens" of your app's settings.
+3. After create, you can check your credentials at the section "Keys and Tokens" of your app's settings.
 
-4-In that section you have two groups of tokens: "Consumer keys" and "Authentication Tokens"
-	4.1-Generate and save the "API Key", "API Key Secret" from Consumer keys in a file, putting each one in a line.
-	4.2-In the Authentication Tokens section, generate the Access Token and Access Token Secret. Save them in the same file separed in lines.
-	4.3-The final result must be a auth.key file in the working directory (the one from which main.py is being executed) with 4 lines: in the first one is the API Key, the second has the API Key Secret, the third has the Access Token and the last one has the Access Token Secret.
+4. In that section you have two groups of tokens: "Consumer keys" and "Authentication Tokens"
+1. Generate and save the "API Key", "API Key Secret" from Consumer keys in a file, putting each one in a line.
+2. In the Authentication Tokens section, generate the Access Token and Access Token Secret. Save them in the same file separed in lines.
+3. The final result must be a auth.key file in the working directory (the one from which main.py is being executed) with 4 lines: in the first one is the API Key, the second has the API Key Secret, the third has the Access Token and the last one has the Access Token Secret.
 
 5-If the execution prints an 401 error, the auth.key file has some errors. Check if the copied keys are right and check there is not spaces or line break in the file (all that things will be detected and can be the root of the error).
 
