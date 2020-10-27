@@ -13,9 +13,12 @@ Creating Twitter Credentials
 
 To get a Twitter Developer account you need to keep the following steps:
 
-1-[Apply for a developer account] (https://developer.twitter.com/en/apply-for-access)
-2-Create a Project and a developer App in the [developer portal] (https://developer.twitter.com/en/portal/dashboard).
+1-[Apply for a developer account](https://developer.twitter.com/en/apply-for-access)
+
+2-Create a Project and a developer App in the [developer portal](https://developer.twitter.com/en/portal/dashboard).
+
 3-After create, you can check your credentials at the section "Keys and Tokens" of your app's settings.
+
 4-In that section you have two groups of tokens: "Consumer keys" and "Authentication Tokens"
 	4.1-Generate and save the "API Key", "API Key Secret" from Consumer keys in a file, putting each one in a line.
 	4.2-In the Authentication Tokens section, generate the Access Token and Access Token Secret. Save them in the same file separed in lines.
@@ -29,8 +32,11 @@ Filtering tweet locations in real time
 --------------------------------------
 
 Twitter API uses GEOJson to recognize the geo-located data. If we want to filter tweets by location, we need to give twitter a geographical area GEOJson-formatted. 
+
 For that, we recommend to use the page [geojson.io](geojson.io) page. There, you select the square(*) and create an area in the map. In the right side of the page you should see a code with a list of numerical elements. Those elements are the points that define the square. 
+
 If you look slowly, you can see there is repeated elements. If nothing goes wrong, there should be only 4 unique elements showed. Copy and paste them in the definition of variable country_location in the main.py file, being carefull of mantain the original format.
+
 After that, don't forget to read the message left behind that line and change the country code from "UY" to your desired country. If you don't change this line probably can't detect anything!
 
 
