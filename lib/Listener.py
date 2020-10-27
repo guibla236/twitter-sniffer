@@ -33,14 +33,14 @@ class StListener(tw.StreamListener):
         if status.place.country_code==self.country_code:
             if status.truncated==True: tweet_text=status.extended_tweet["full_text"]
             else: tweet_text=status.text
-                self.DB.insertData(status.user.screen_name,
+                self.DB.insertData([status.user.screen_name,
                                    status.extended_tweet["full_text"],
                                    timeZoneTransformer(status,self.location).ctime(),
                                    status.in_reply_to_screen_name,
                                    hashtagsExtractor(status),
                                    userMentionsExtractor(status),
                                    status.place.full_name,
-                                   dumps(status._json))
+                                   dumps(status._json)])
                 if self.debug: print("@"+status.user.screen_name+": "+tweet_text)
 
     def on_error(self,status_code):
